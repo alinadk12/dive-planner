@@ -2,45 +2,30 @@
 
 declare(strict_types = 1);
 
-namespace app\operations\logbook;
+namespace app\interfaces\logbook\operations;
 
 use app\interfaces\logbook\dto\OperationResultInterface;
-use app\interfaces\logbook\operations\SingleFindOperationInterface;
-use yii;
-use yii\base\InvalidConfigException;
 
 /**
- * Операция поиска сущностей "Логбук" на основе фильтра.
+ * Интерфейс операции, реализующей логику поиска сущности.
  */
-class SingleFindOperation extends BaseFindOperation implements SingleFindOperationInterface
+interface SingleFindOperationInterface extends BaseFindOperationInterface
 {
     /**
-     * Прототип объекта-ответа "Категории" команды.
+     * Метод устанавливает объект прототипа ответа команды "Логбук".
      *
-     * @var OperationResultInterface|null
+     * @param OperationResultInterface $value Новое значение.
+     *
+     * @return SingleFindOperationInterface
      */
-    protected $resultPrototype;
+    public function setResultPrototype(OperationResultInterface $value): SingleFindOperationInterface;
 
     /**
-     * Метод возвращает одну сущность по заданному фильтру.
-     *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
+     * Метод возвращает объект-результат ответа команды "Логбук".
      *
      * @return OperationResultInterface
      */
-    public function doOperation(): OperationResultInterface
-    {
-        $result = $this->getResultPrototype()->copy();
-        $query  = $this->buildQuery();
-        $data   = $query->one($this->getDbConnection());
-        if (! $data) {
-            return $result;
-        }
-        $data = [$data];
-        $list = $this->getLogbookList($data);
-        $result->setLogbook(array_shift($list));
-        return $result;
-    }
+    public function getResultPrototype(): OperationResultInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Идентификатор" сущности "Логбук".
@@ -50,11 +35,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byId(int $id, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byId($id, $operator);
-        return $this;
-    }
+    public function byId(int $id, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Идентификатор пользователя" сущности "Логбук".
@@ -64,11 +45,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byUserId(int $userId, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byUserId($userId, $operator);
-        return $this;
-    }
+    public function byUserId(int $userId, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Дата погружения" сущности "Логбук".
@@ -78,11 +55,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byDate(string $date, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byDate($date, $operator);
-        return $this;
-    }
+    public function byDate(string $date, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Дата погружения" сущности "Логбук".
@@ -92,11 +65,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byLocation(string $location, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byLocation($location, $operator);
-        return $this;
-    }
+    public function byLocation(string $location, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Глубина" сущности "Логбук".
@@ -106,11 +75,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byDepth(int $depth, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byDepth($depth, $operator);
-        return $this;
-    }
+    public function byDepth(int $depth, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Видимость" сущности "Логбук".
@@ -120,11 +85,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byVisibility(int $visibility, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byVisibility($visibility, $operator);
-        return $this;
-    }
+    public function byVisibility(int $visibility, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воздуха" сущности "Логбук".
@@ -134,11 +95,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byTempAir(int $tempAir, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byTempAir($tempAir, $operator);
-        return $this;
-    }
+    public function byTempAir(int $tempAir, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воды на поверхности" сущности "Логбук".
@@ -148,11 +105,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byTempSurface(int $tempSurface, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byTempSurface($tempSurface, $operator);
-        return $this;
-    }
+    public function byTempSurface(int $tempSurface, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воды на дне" сущности "Логбук".
@@ -162,11 +115,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byTempBottom(int $tempBottom, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byTempBottom($tempBottom, $operator);
-        return $this;
-    }
+    public function byTempBottom(int $tempBottom, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Время начала погружения" сущности "Логбук".
@@ -176,11 +125,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byTimeIn(string $timeIn, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byTimeIn($timeIn, $operator);
-        return $this;
-    }
+    public function byTimeIn(string $timeIn, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Время окончания погружения" сущности "Логбук".
@@ -190,11 +135,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byTimeOut(string $timeOut, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byTimeOut($timeOut, $operator);
-        return $this;
-    }
+    public function byTimeOut(string $timeOut, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Объем баллона" сущности "Логбук".
@@ -204,11 +145,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byCylinder(int $cylinder, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byCylinder($cylinder, $operator);
-        return $this;
-    }
+    public function byCylinder(int $cylinder, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Количество воздуха в начале погружения" сущности "Логбук".
@@ -218,11 +155,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byStartBar(int $startBar, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byStartBar($startBar, $operator);
-        return $this;
-    }
+    public function byStartBar(int $startBar, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Количество воздуха в конце погружения" сущности "Логбук".
@@ -232,11 +165,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byEndBar(int $endBar, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byEndBar($endBar, $operator);
-        return $this;
-    }
+    public function byEndBar(int $endBar, string $operator = '='): SingleFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Комментарий" сущности "Логбук".
@@ -246,39 +175,14 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function byComment(string $comment, string $operator = '='): SingleFindOperationInterface
-    {
-        $this->getQuery()->byComment($comment, $operator);
-        return $this;
-    }
+    public function byComment(string $comment, string $operator = '='): SingleFindOperationInterface;
 
     /**
-     * Метод устанавливает объект прототипа ответа команды "Категории".
-     *
-     * @param OperationResultInterface $value Новое значение.
-     *
-     * @return SingleFindOperationInterface
-     */
-    public function setResultPrototype(OperationResultInterface $value): SingleFindOperationInterface
-    {
-        $this->resultPrototype = $value;
-        return $this;
-    }
-
-    /**
-     * Метод возвращает объект-результат ответа команды "Логбук".
+     * Метод возвращает одну сущность по заданному фильтру.
      *
      * @return OperationResultInterface
-     *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
-    public function getResultPrototype(): OperationResultInterface
-    {
-        if (null === $this->resultPrototype) {
-            throw new InvalidConfigException(__METHOD__ . '() Operation result object can not be null');
-        }
-        return $this->resultPrototype;
-    }
+    public function doOperation(): OperationResultInterface;
 
     /**
      * Устанавливает сортировку результатов запроса по полю "id".
@@ -287,11 +191,7 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function sortById(string $sortType = 'ASC'): SingleFindOperationInterface
-    {
-        $this->getQuery()->sortBy('id', $sortType);
-        return $this;
-    }
+    public function sortById(string $sortType = 'ASC'): SingleFindOperationInterface;
 
     /**
      * Устанавливает сортировку результатов запроса по полю "name".
@@ -300,9 +200,5 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      *
      * @return SingleFindOperationInterface
      */
-    public function sortByName(string $sortType = 'ASC'): SingleFindOperationInterface
-    {
-        $this->getQuery()->sortBy('name', $sortType);
-        return $this;
-    }
+    public function sortByName(string $sortType = 'ASC'): SingleFindOperationInterface;
 }

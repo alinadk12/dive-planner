@@ -17,17 +17,17 @@ class m190113_093845_create_logbook_table extends Migration
             'userId'      => $this->integer()->notNull()->comment('ИД дайвера'),
             'date'        => $this->date()->notNull()->comment('Дата погружения'),
             'location'    => $this->string(255)->notNull()->comment('Место погружения'),
-            'depth'       => $this->float()->notNull()->comment('Глубина'),
-            'visibility'  => $this->float()->null()->comment('Видимость'),
-            'tempAir'     => $this->float()->null()->comment('Температура воздуха'),
-            'tempSurface' => $this->float()->null()->comment('Температура воды на поверхности'),
-            'tempBottom'  => $this->float()->null()->comment('Температура воды на дне'),
+            'depth'       => $this->integer()->notNull()->comment('Глубина'),
+            'visibility'  => $this->integer()->null()->comment('Видимость'),
+            'tempAir'     => $this->integer()->null()->comment('Температура воздуха'),
+            'tempSurface' => $this->integer()->null()->comment('Температура воды на поверхности'),
+            'tempBottom'  => $this->integer()->null()->comment('Температура воды на дне'),
             'timeIn'      => $this->time()->notNull()->comment('Время начала погружения'),
             'timeOut'     => $this->time()->notNull()->comment('Время окончания погружения'),
             'cylinder'    => $this->integer()->notNull()->comment('Объем баллона'),
             'startBar'    => $this->integer()->notNull()->comment('Количество воздуха в начале погружения'),
             'endBar'      => $this->integer()->notNull()->comment('Количество воздуха в конце погружения'),
-            'comments'    => $this->text()->null()->comment('Комментарии'),
+            'comment'     => $this->text()->null()->comment('Комментарии'),
         ]);
 
         $this->addForeignKey(

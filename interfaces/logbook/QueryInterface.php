@@ -2,16 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace app\queries;
+namespace app\interfaces\logbook;
 
-use yii\db\Query;
-use app\entities\LogbookActiveRecord;
-use app\interfaces\logbook\QueryInterface;
+use yii\db\Expression;
+use yii\db\QueryInterface as YiiQueryInterface;
+
 
 /**
- * Класс реализует обертку для формирования критериев выборки данных.
+ * Интерфейс опеределяет обертку для формирования критериев выборки данных.
  */
-class LogbookQuery extends Query implements QueryInterface
+interface QueryInterface extends YiiQueryInterface
 {
     /**
      * Выборка по атрибуту "Идентификатор" сущности "Логбук".
@@ -21,14 +21,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byId(int $id, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.id',
-            $id,
-        ]);
-    }
+    public function byId(int $id, string $operator = '='): QueryInterface;
 
     /**
      * Задает критерий фильтрации по нескольким значениям атрибута "Идентификатор" сущности "Логбук".
@@ -38,14 +31,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byIds(array $ids, string $operator = 'IN'): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.id',
-            $ids,
-        ]);
-    }
+    public function byIds(array $ids, string $operator = 'IN'): QueryInterface;
 
     /**
      * Выборка по атрибуту "Идентификатор пользователя" сущности "Логбук".
@@ -55,14 +41,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byUserId(int $userId, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.userId',
-            $userId,
-        ]);
-    }
+    public function byUserId(int $userId, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Дата погружения" сущности "Логбук".
@@ -72,14 +51,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byDate(string $date, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.date',
-            $date,
-        ]);
-    }
+    public function byDate(string $date, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Место погружения" сущности "Логбук".
@@ -89,14 +61,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byLocation(string $location, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.location',
-            $location,
-        ]);
-    }
+    public function byLocation(string $location, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Глубина" сущности "Логбук".
@@ -106,14 +71,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byDepth(int $depth, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.depth',
-            $depth,
-        ]);
-    }
+    public function byDepth(int $depth, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Видимость" сущности "Логбук".
@@ -123,14 +81,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byVisibility(int $visibility, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.visibility',
-            $visibility,
-        ]);
-    }
+    public function byVisibility(int $visibility, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Температура воздуха" сущности "Логбук".
@@ -140,14 +91,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byTempAir(int $tempAir, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.tempAir',
-            $tempAir,
-        ]);
-    }
+    public function byTempAir(int $tempAir, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Температура воды на поверхности" сущности "Логбук".
@@ -157,14 +101,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byTempSurface(int $tempSurface, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.tempSurface',
-            $tempSurface,
-        ]);
-    }
+    public function byTempSurface(int $tempSurface, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Температура воды на дне" сущности "Логбук".
@@ -174,14 +111,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byTempBottom(int $tempBottom, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.tempBottom',
-            $tempBottom,
-        ]);
-    }
+    public function byTempBottom(int $tempBottom, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Время начала погружения" сущности "Логбук".
@@ -191,14 +121,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byTimeIn(string $timeIn, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.timeIn',
-            $timeIn,
-        ]);
-    }
+    public function byTimeIn(string $timeIn, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Время окончания погружения" сущности "Логбук".
@@ -208,14 +131,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byTimeOut(string $timeOut, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.timeOut',
-            $timeOut,
-        ]);
-    }
+    public function byTimeOut(string $timeOut, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Объем баллона" сущности "Логбук".
@@ -225,14 +141,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byCylinder(int $cylinder, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.cylinder',
-            $cylinder,
-        ]);
-    }
+    public function byCylinder(int $cylinder, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Количество воздуха в начале погружения" сущности "Логбук".
@@ -242,14 +151,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byStartBar(int $startBar, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.startBar',
-            $startBar,
-        ]);
-    }
+    public function byStartBar(int $startBar, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Количество воздуха в конце погружения" сущности "Логбук".
@@ -259,14 +161,7 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byEndBar(int $endBar, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.endBar',
-            $endBar,
-        ]);
-    }
+    public function byEndBar(int $endBar, string $operator = '='): QueryInterface;
 
     /**
      * Выборка по атрибуту "Комментарий" сущности "Логбук".
@@ -276,28 +171,32 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function byComment(string $comment, string $operator = '='): QueryInterface
-    {
-        return $this->andWhere([
-            $operator,
-            'logbook.comment',
-            $comment,
-        ]);
-    }
+    public function byComment(string $comment, string $operator = '='): QueryInterface;
 
     /**
-     * Метод выполняет инициализацию объекта.
+     * Метод устанавливает FROM-часть формируемого запроса.
+     * Метод добавлен в интерфейс, так как отсутствует в родительском интерфейсе.
+     * Тем не менее, реализация метода уже сделана в классе yii\db\Query.
+     * Тип возвращаемого значения не указан для совместимости с родителем.
      *
-     * @inherit
+     * @param string|array|Expression $tables Таблица или список таблиц из которых нужно выбрать данные.
      *
-     * @return void
+     * @return QueryInterface|mixed
      */
-    public function init()
-    {
-        parent::init();
-        $this->from(LogbookActiveRecord::tableName() . 'AS logbook');
-        $this->select('logbook.*');
-    }
+    public function from($tables);
+
+    /**
+     * Метод устанавливает SELECT-часть формируемого запроса.
+     * Метод добавлен в интерфейс, так как отсутствует в родительском интерфейсе.
+     * Тем не менее, реализация метода уже сделана в классе yii\db\Query.
+     * Тип возвращаемого значения не указан для совместимости с родителем.
+     *
+     * @param string|array|Expression $columns Столбцы, которые должны быть выбраны.
+     * @param string|null             $option  Дополнительные опции выборки.
+     *
+     * @return QueryInterface|mixed
+     */
+    public function select($columns, $option = 'null');
 
     /**
      * Устанавливает сортировку результатов запроса.
@@ -307,9 +206,5 @@ class LogbookQuery extends Query implements QueryInterface
      *
      * @return QueryInterface
      */
-    public function sortBy(string $fieldName, string $sortType = 'DESC'): QueryInterface
-    {
-        $sortType = 'ASC' === $sortType ? $sortType : 'DESC';
-        return $this->addOrderBy($fieldName . ' ' . $sortType);
-    }
+    public function sortBy(string $fieldName, string $sortType = 'DESC'): QueryInterface;
 }

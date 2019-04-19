@@ -2,56 +2,34 @@
 
 declare(strict_types = 1);
 
-namespace app\operations\logbook;
+namespace app\interfaces\logbook\operations;
 
 use app\interfaces\logbook\dto\OperationListResultInterface;
-use app\interfaces\logbook\operations\MultiFindOperationInterface;
-use Exception;
-use yii;
-use yii\base\InvalidConfigException;
 
-/**
- * Операция поиска сущностей "Логбук" на основе фильтра.
- */
-class MultiFindOperation extends BaseFindOperation implements MultiFindOperationInterface
+interface MultiFindOperationInterface extends BaseFindOperationInterface
 {
     /**
-     * Прототип объекта-ответа "Категории" команды.
+     * Метод устанавливает объект прототипа "Логбук" ответа команды.
      *
-     * @var OperationListResultInterface|null
+     * @param OperationListResultInterface $value Новое значение.
+     *
+     * @return MultiFindOperationInterface
      */
-    protected $resultPrototype;
+    public function setResultPrototype(OperationListResultInterface $value): MultiFindOperationInterface;
+
+    /**
+     * Метод возвращает объект-результат "Логбук" ответа команды.
+     *
+     * @return OperationListResultInterface
+     */
+    public function getResultPrototype(): OperationListResultInterface;
 
     /**
      * Метод возвращает все сущности по заданному фильтру в виде массива.
      *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
-     *
      * @return array
      */
-    public function allAsArray(): array
-    {
-        $query = $this->buildQuery();
-        $data  = $query->all($this->getDbConnection());
-
-        return $data;
-    }
-
-    /**
-     * Метод возвращает все сущности по заданному фильтру.
-     *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
-     *
-     * @return OperationListResultInterface
-     */
-    public function doOperation(): OperationListResultInterface
-    {
-        $data   = $this->allAsArray();
-        $result = $this->getResultPrototype()->copy();
-        $result->setLogbookList($this->getLogbookList($data));
-
-        return $result;
-    }
+    public function allAsArray(): array;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Идентификатор" сущности "Логбук".
@@ -61,11 +39,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byId(int $id, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byId($id, $operator);
-        return $this;
-    }
+    public function byId(int $id, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Выборка атрибуту сущности список "Идентификатор".
@@ -74,19 +48,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
-     *
-     * @throws Exception Если в переданном массиве содержатся не только целые числа.
      */
-    public function byIdList(array $idList, string $operator = 'IN'): MultiFindOperationInterface
-    {
-        foreach ($idList as $id) {
-            if (! is_int($id)) {
-                throw new Exception('All Channel ids must be integer');
-            }
-        }
-        $this->getQuery()->byIds($idList);
-        return $this;
-    }
+    public function byIdList(array $idList, string $operator = 'IN'): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Идентификатор пользователя" сущности "Логбук".
@@ -96,11 +59,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byUserId(int $userId, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byUserId($userId, $operator);
-        return $this;
-    }
+    public function byUserId(int $userId, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Дата погружения" сущности "Логбук".
@@ -110,11 +69,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byDate(string $date, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byDate($date, $operator);
-        return $this;
-    }
+    public function byDate(string $date, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Дата погружения" сущности "Логбук".
@@ -124,11 +79,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byLocation(string $location, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byLocation($location, $operator);
-        return $this;
-    }
+    public function byLocation(string $location, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Глубина" сущности "Логбук".
@@ -138,11 +89,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byDepth(int $depth, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byDepth($depth, $operator);
-        return $this;
-    }
+    public function byDepth(int $depth, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Видимость" сущности "Логбук".
@@ -152,11 +99,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byVisibility(int $visibility, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byVisibility($visibility, $operator);
-        return $this;
-    }
+    public function byVisibility(int $visibility, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воздуха" сущности "Логбук".
@@ -166,11 +109,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byTempAir(int $tempAir, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byTempAir($tempAir, $operator);
-        return $this;
-    }
+    public function byTempAir(int $tempAir, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воды на поверхности" сущности "Логбук".
@@ -180,11 +119,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byTempSurface(int $tempSurface, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byTempSurface($tempSurface, $operator);
-        return $this;
-    }
+    public function byTempSurface(int $tempSurface, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Температура воды на дне" сущности "Логбук".
@@ -194,11 +129,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byTempBottom(int $tempBottom, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byTempBottom($tempBottom, $operator);
-        return $this;
-    }
+    public function byTempBottom(int $tempBottom, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Время начала погружения" сущности "Логбук".
@@ -208,11 +139,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byTimeIn(string $timeIn, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byTimeIn($timeIn, $operator);
-        return $this;
-    }
+    public function byTimeIn(string $timeIn, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Время окончания погружения" сущности "Логбук".
@@ -222,11 +149,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byTimeOut(string $timeOut, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byTimeOut($timeOut, $operator);
-        return $this;
-    }
+    public function byTimeOut(string $timeOut, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Объем баллона" сущности "Логбук".
@@ -236,11 +159,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byCylinder(int $cylinder, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byCylinder($cylinder, $operator);
-        return $this;
-    }
+    public function byCylinder(int $cylinder, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Количество воздуха в начале погружения" сущности "Логбук".
@@ -250,11 +169,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byStartBar(int $startBar, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byStartBar($startBar, $operator);
-        return $this;
-    }
+    public function byStartBar(int $startBar, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Количество воздуха в конце погружения" сущности "Логбук".
@@ -264,11 +179,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byEndBar(int $endBar, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byEndBar($endBar, $operator);
-        return $this;
-    }
+    public function byEndBar(int $endBar, string $operator = '='): MultiFindOperationInterface;
 
     /**
      * Задает критерий фильтрации выборки по атрибуту "Комментарий" сущности "Логбук".
@@ -278,47 +189,32 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function byComment(string $comment, string $operator = '='): MultiFindOperationInterface
-    {
-        $this->getQuery()->byComment($comment, $operator);
-        return $this;
-    }
+    public function byComment(string $comment, string $operator = '='): MultiFindOperationInterface;
+
+    /**
+     * Метод возвращает все сущности по заданному фильтру.
+     *
+     * @return OperationListResultInterface
+     */
+    public function doOperation(): OperationListResultInterface;
 
     /**
      * Метод устанавливает лимит получаемых сущностей.
      *
      * @param int $limit Количество необходимых сущностей.
      *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
-     *
      * @return MultiFindOperationInterface
      */
-    public function limit(int $limit): MultiFindOperationInterface
-    {
-        if ($limit <= 0) {
-            return $this;
-        }
-        $this->getQuery()->limit($limit);
-        return $this;
-    }
+    public function limit(int $limit): MultiFindOperationInterface;
 
     /**
      * Метод устанавливает смещение получаемых сущностей.
      *
      * @param int $offset Смещение в списке необходимых сущностей.
      *
-     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
-     *
      * @return MultiFindOperationInterface
      */
-    public function offset(int $offset): MultiFindOperationInterface
-    {
-        if ($offset < 0) {
-            return $this;
-        }
-        $this->getQuery()->offset($offset);
-        return $this;
-    }
+    public function offset(int $offset): MultiFindOperationInterface;
 
     /**
      * Устанавливает сортировку результатов запроса по полю "id".
@@ -327,11 +223,7 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function sortById(string $sortType = 'ASC'): MultiFindOperationInterface
-    {
-        $this->getQuery()->sortBy('id', $sortType);
-        return $this;
-    }
+    public function sortById(string $sortType = 'ASC'): MultiFindOperationInterface;
 
     /**
      * Устанавливает сортировку результатов запроса по полю "name".
@@ -340,9 +232,5 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      *
      * @return MultiFindOperationInterface
      */
-    public function sortByName(string $sortType = 'ASC'): MultiFindOperationInterface
-    {
-        $this->getQuery()->sortBy('name', $sortType);
-        return $this;
-    }
+    public function sortByName(string $sortType = 'ASC'): MultiFindOperationInterface;
 }
