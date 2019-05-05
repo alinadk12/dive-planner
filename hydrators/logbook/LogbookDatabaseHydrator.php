@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace app\hydrators;
+namespace app\hydrators\logbook;
 
 use app\interfaces\abstracts\HydratorInterface;
 use app\interfaces\logbook\dto\LogbookInterface;

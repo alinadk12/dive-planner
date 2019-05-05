@@ -11,12 +11,10 @@ use app\interfaces\logbook\dto\LogbookInterface;
 use app\interfaces\logbook\operations\SingleUpdateOperationInterface;
 use app\traits\WithDbConnectionTrait;
 use app\traits\logbook\DatabaseHydratorTrait;
-use yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
 use yii\db\Command;
 use yii\db\Exception;
-use yii\db\Expression;
 
 /**
  * Операция общновления имеющейся сущности "Логбук".

@@ -4,31 +4,20 @@ declare(strict_types = 1);
 
 namespace app\forms\abstracts;
 
-use yii\base\InvalidConfigException;
+use app\interfaces\abstracts\forms\DeleteFormInterface;
 
 /**
  * Абстрактной класс формы для просмотра редактирования одной DTO.
  */
-abstract class AbstractDeleteForm extends AbstractForm
+abstract class AbstractDeleteForm extends AbstractQueryParamsForm implements DeleteFormInterface
 {
     /**
-     * Осуществлет основное действие формы - удаление элемента.
+     * Метод возвращает объект ДТО для работы с формой.
      *
-     * @param array $params Параметры формы для выполнения её действия.
-     *
-     * @throws InvalidConfigException Если компонент не зарегистрирован.
-     *
-     * @inherit
-     *
-     * @return mixed
+     * @return null
      */
-    public function run(array $params = [])
+    public function getPrototype()
     {
-        $result = $this->getDtoComponent()->deleteMany()->byId($this->dto->getId())->doOperation();
-        if (! $result->isSuccess()) {
-            $this->addErrors($result->getErrors());
-            return false;
-        }
-        return true;
+        return null;
     }
 }

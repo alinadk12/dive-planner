@@ -224,13 +224,4 @@ interface MultiFindOperationInterface extends BaseFindOperationInterface
      * @return MultiFindOperationInterface
      */
     public function sortById(string $sortType = 'ASC'): MultiFindOperationInterface;
-
-    /**
-     * Устанавливает сортировку результатов запроса по полю "name".
-     *
-     * @param string $sortType Тип сортировки - ASC или DESC.
-     *
-     * @return MultiFindOperationInterface
-     */
-    public function sortByName(string $sortType = 'ASC'): MultiFindOperationInterface;
 }

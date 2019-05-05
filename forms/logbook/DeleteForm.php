@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace app\forms\logbook;
 
-use app\entities\LogbookActiveRecord;
 use app\forms\abstracts\AbstractDeleteForm;
+use app\interfaces\logbook\dto\LogbookInterface;
 use app\traits\logbook\LogbookComponentTrait;
-use app\validators\logbook\LogbookValidator;
+use Exception;
 use yii\base\InvalidConfigException;
 
 /**
@@ -18,47 +18,33 @@ class DeleteForm extends AbstractDeleteForm
     use LogbookComponentTrait;
 
     /**
-     * Инициализация объекта формы обновления.
-     *
-     * @throws InvalidConfigException Если компонент не зарегистрирован.
-     *
-     * @return void
-     */
-    public function init(): void
-    {
-        parent::init();
-        $this->setLogbookComponent($this->getLogbookComponent());
-        $this->setActiveRecordClass(LogbookActiveRecord::class);
-    }
-
-    /**
-     * Данный метод возвращает массив, содержащий правила валидации атрибутов.
-     *
-     * @return array
-     */
-    public function rules(): array
-    {
-        return LogbookValidator::getRules();
-    }
-
-    /**
      * Осуществлет основное действие формы - удаление элемента.
      *
      * @param array $params Параметры формы для выполнения её действия.
      *
      * @throws InvalidConfigException Если компонент не зарегистрирован.
+     * @throws Exception              Если сущность не найдена.
      *
      * @inherit
      *
-     * @return mixed
+     * @return LogbookInterface|null
      */
-    public function run(array $params = [])
+    public function run(array $params = []): ?LogbookInterface
     {
-        $result = $this->getDtoComponent()->deleteMany()->byId($this->dto->getCategory()->getId())->doOperation();
+        if (! $this->validate()) {
+            return null;
+        }
+
+        if (! $item = $this->getLogbookComponent()->findOne()->byId($this->getId())->doOperation()->getLogbook()) {
+            throw new Exception('Сущность не найдена', 404);
+        }
+
+        $result = $this->getLogbookComponent()->deleteMany()->byId($this->getId())->doOperation();
         if (! $result->isSuccess()) {
             $this->addErrors($result->getErrors());
-            return false;
+            return null;
         }
-        return true;
+
+        return $item;
     }
 }

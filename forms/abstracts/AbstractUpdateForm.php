@@ -4,31 +4,35 @@ declare(strict_types = 1);
 
 namespace app\forms\abstracts;
 
+use app\interfaces\abstracts\forms\UpdateFormInterface;
 use yii\base\InvalidConfigException;
 
 /**
  * Абстрактной класс формы для просмотра редактирования одной DTO.
  */
-abstract class AbstractUpdateForm extends AbstractForm
+abstract class AbstractUpdateForm extends AbstractQueryParamsForm implements UpdateFormInterface
 {
     /**
-     * Осуществлет основное действие формы - обновление элемента.
+     * Переопределенный метод загрузки данных в форму.
      *
-     * @param array $params Параметры формы для выполнения её действия.
+     * @param array|null  $data     Входные данные.
+     * @param string|null $formName Название формы.
      *
-     * @throws InvalidConfigException Если dtoComponent не установлен.
+     * @return boolean
      *
      * @inherit
      *
-     * @return mixed
+     * @throws InvalidConfigException Если компонент не зарегистрирован.
      */
-    public function run(array $params = [])
+    public function load($data, $formName = null): bool
     {
-        $result = $this->getDtoComponent()->updateOne($this->dto)->doOperation();
-        if (! $result->isSuccess()) {
-            $this->addErrors($result->getErrors());
-            return false;
-        }
+        parent::load($data, '');
+
+        $hydrator  = $this->getHydrator();
+        $prototype = $this->getPrototype();
+        $prototype = $hydrator->hydrate($data, $prototype);
+        $this->setPrototype($prototype);
+
         return true;
     }
 }

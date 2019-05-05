@@ -17,6 +17,7 @@ use app\interfaces\logbook\operations\SingleUpdateOperationInterface;
 use app\interfaces\logbook\QueryInterface;
 use app\models\ModelsFactory;
 use app\interfaces\logbook\FactoryInterface;
+use yii\base\InvalidConfigException;
 
 /**
  * Фабрика. Реализует породждение моделей пакета для работы с сущностью "Логбук".

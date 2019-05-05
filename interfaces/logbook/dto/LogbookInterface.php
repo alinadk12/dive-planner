@@ -124,9 +124,9 @@ interface LogbookInterface extends ObjectWithErrorsInterface, PrototypeInterface
     /**
      * Метод возвращает атрибут "Комментарий" сущности "Логбук".
      *
-     * @return string
+     * @return string|null
      */
-    public function getComment(): string ;
+    public function getComment(): ?string ;
 
     /**
      * Метод устанавливает атрибут "Идентификатор" сущности "Логбук".

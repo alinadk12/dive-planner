@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace app\forms\logbook;
 
-use app\entities\LogbookActiveRecord;
 use app\forms\abstracts\AbstractViewForm;
+use app\interfaces\logbook\dto\LogbookInterface;
 use app\traits\logbook\LogbookComponentTrait;
-use app\validators\logbook\LogbookValidator;
+use Exception;
 use yii\base\InvalidConfigException;
 
 /**
@@ -18,26 +18,28 @@ class ViewForm extends AbstractViewForm
     use LogbookComponentTrait;
 
     /**
-     * Инициализация объекта формы обновления.
+     * Осуществлет основное действие формы - просмотр элемента.
+     *
+     * @param array $params Параметры формы для выполнения её действия.
      *
      * @throws InvalidConfigException Если компонент не зарегистрирован.
+     * @throws Exception              Если сущность не найдена.
      *
-     * @return void
+     * @inherit
+     *
+     * @return LogbookInterface|null
      */
-    public function init(): void
+    public function run(array $params = []): ?LogbookInterface
     {
-        parent::init();
-        $this->setDtoComponent($this->getLogbookComponent());
-        $this->setActiveRecordClass(LogbookActiveRecord::class);
-    }
+        if (! $this->validate()) {
+            return null;
+        }
 
-    /**
-     * Данный метод возвращает массив, содержащий правила валидации атрибутов.
-     *
-     * @return array
-     */
-    public function rules(): array
-    {
-        return LogbookValidator::getRules();
+        $item = $this->getLogbookComponent()->findOne()->byId($this->getId())->doOperation()->getLogbook();
+        if (! $item) {
+            throw new Exception('Сущность не найдена', 404);
+        }
+
+        return $item;
     }
 }

@@ -7,7 +7,6 @@ namespace app\operations\logbook;
 use app\interfaces\logbook\dto\OperationListResultInterface;
 use app\interfaces\logbook\operations\MultiFindOperationInterface;
 use Exception;
-use yii;
 use yii\base\InvalidConfigException;
 
 /**
@@ -21,6 +20,34 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @var OperationListResultInterface|null
      */
     protected $resultPrototype;
+
+    /**
+     * Метод устанавливает объект прототипа ответа команды "Категории".
+     *
+     * @param OperationListResultInterface $value Новое значение.
+     *
+     * @return MultiFindOperationInterface
+     */
+    public function setResultPrototype(OperationListResultInterface $value): MultiFindOperationInterface
+    {
+        $this->resultPrototype = $value;
+        return $this;
+    }
+
+    /**
+     * Метод возвращает объект-результат ответа команды "Логбук".
+     *
+     * @return OperationListResultInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
+     */
+    public function getResultPrototype(): OperationListResultInterface
+    {
+        if (null === $this->resultPrototype) {
+            throw new InvalidConfigException(__METHOD__ . '() Operation result object can not be null');
+        }
+        return $this->resultPrototype;
+    }
 
     /**
      * Метод возвращает все сущности по заданному фильтру в виде массива.
@@ -60,6 +87,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byId(int $id, string $operator = '='): MultiFindOperationInterface
     {
@@ -95,6 +124,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byUserId(int $userId, string $operator = '='): MultiFindOperationInterface
     {
@@ -109,6 +140,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byDate(string $date, string $operator = '='): MultiFindOperationInterface
     {
@@ -123,6 +156,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byLocation(string $location, string $operator = '='): MultiFindOperationInterface
     {
@@ -137,6 +172,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byDepth(int $depth, string $operator = '='): MultiFindOperationInterface
     {
@@ -151,6 +188,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator   Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byVisibility(int $visibility, string $operator = '='): MultiFindOperationInterface
     {
@@ -165,6 +204,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempAir(int $tempAir, string $operator = '='): MultiFindOperationInterface
     {
@@ -179,6 +220,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator    Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempSurface(int $tempSurface, string $operator = '='): MultiFindOperationInterface
     {
@@ -193,6 +236,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator   Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempBottom(int $tempBottom, string $operator = '='): MultiFindOperationInterface
     {
@@ -207,6 +252,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTimeIn(string $timeIn, string $operator = '='): MultiFindOperationInterface
     {
@@ -221,6 +268,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTimeOut(string $timeOut, string $operator = '='): MultiFindOperationInterface
     {
@@ -235,6 +284,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byCylinder(int $cylinder, string $operator = '='): MultiFindOperationInterface
     {
@@ -249,6 +300,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byStartBar(int $startBar, string $operator = '='): MultiFindOperationInterface
     {
@@ -263,6 +316,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byEndBar(int $endBar, string $operator = '='): MultiFindOperationInterface
     {
@@ -277,6 +332,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byComment(string $comment, string $operator = '='): MultiFindOperationInterface
     {
@@ -326,6 +383,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $sortType Тип сортировки - ASC или DESC.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function sortById(string $sortType = 'ASC'): MultiFindOperationInterface
     {
@@ -339,6 +398,8 @@ class MultiFindOperation extends BaseFindOperation implements MultiFindOperation
      * @param string $sortType Тип сортировки - ASC или DESC.
      *
      * @return MultiFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function sortByName(string $sortType = 'ASC'): MultiFindOperationInterface
     {

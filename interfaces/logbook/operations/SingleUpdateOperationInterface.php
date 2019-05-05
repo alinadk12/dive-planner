@@ -6,7 +6,6 @@ namespace app\interfaces\logbook\operations;
 
 use app\interfaces\abstracts\DTOValidatorInterface;
 use app\interfaces\abstracts\HydratorInterface;
-use app\interfaces\abstracts\QueryCacheInterface;
 use app\interfaces\logbook\dto\OperationResultInterface;
 use app\interfaces\logbook\dto\LogbookInterface;
 
@@ -44,15 +43,6 @@ interface SingleUpdateOperationInterface
     public function getResultPrototype(): OperationResultInterface;
 
     /**
-     * Метод устанавливает модель кэшера.
-     *
-     * @param QueryCacheInterface $cacheModel Новое значение модели кэшера.
-     *
-     * @return static
-     */
-    public function setCacheModel(QueryCacheInterface $cacheModel);
-
-    /**
      * Метод устанавливает сущность, над которой необходимо выполнить операцию.
      *
      * @param LogbookInterface $value Новое значение.
@@ -77,7 +67,7 @@ interface SingleUpdateOperationInterface
      *
      * @return SingleUpdateOperationInterface
      */
-    public function setCategoryValidator(DTOValidatorInterface $validator): SingleUpdateOperationInterface;
+    public function setLogbookValidator(DTOValidatorInterface $validator): SingleUpdateOperationInterface;
 
     /**
      * Метод устанавливает объект прототипа ответа команды.

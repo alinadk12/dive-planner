@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types = 1);
-
 use app\components\logbook\LogbookComponent;
 use app\dataTransferObjects\logbook\OperationListResult;
 use app\dataTransferObjects\logbook\OperationResult;
 use app\dataTransferObjects\logbook\Logbook;
 use app\factories\LogbookFactory;
-use app\hydrators\LogbookDatabaseHydrator;
+use app\hydrators\logbook\LogbookDatabaseHydrator;
 use app\interfaces\abstracts\ComponentWithFactoryInterface;
 use app\operations\logbook\MultiDeleteOperation;
 use app\operations\logbook\MultiFindOperation;

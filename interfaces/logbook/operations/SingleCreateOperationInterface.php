@@ -5,9 +5,8 @@ declare(strict_types = 1);
 namespace app\interfaces\logbook\operations;
 
 use app\interfaces\abstracts\HydratorInterface;
-use app\interfaces\abstracts\QueryCacheInterface;
 use app\interfaces\logbook\dto\OperationResultInterface;
-use app\interfaces\logbook\dto\SectionInterface;
+use app\interfaces\logbook\dto\LogbookInterface;
 use app\interfaces\abstracts\DTOValidatorInterface;
 
 /**
@@ -42,15 +41,6 @@ interface SingleCreateOperationInterface
      * @return OperationResultInterface
      */
     public function getResultPrototype(): OperationResultInterface;
-
-    /**
-     * Метод устанавливает модель кэшера.
-     *
-     * @param QueryCacheInterface $cacheModel Новое значение модели кэшера.
-     *
-     * @return static
-     */
-    public function setCacheModel(QueryCacheInterface $cacheModel);
 
     /**
      * Метод устанавливает сущности, над которыми необходимо выполнить операцию.

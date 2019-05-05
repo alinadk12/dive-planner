@@ -4,52 +4,33 @@ declare(strict_types = 1);
 
 namespace app\forms\abstracts;
 
-use yii;
-use yii\base\InvalidArgumentException;
+use app\interfaces\abstracts\forms\CreateFormInterface;
 use yii\base\InvalidConfigException;
 
 /**
  * Абстрактной класс формы для просмотра редактирования одной DTO.
  */
-abstract class AbstractCreateForm extends AbstractForm
+abstract class AbstractCreateForm extends AbstractForm implements CreateFormInterface
 {
     /**
-     * Осуществлет основное действие формы - добавление элемента.
+     * Переопределенный метод загрузки формы.
      *
-     * @param array $params Параметры формы для выполнения её действия.
+     * @param array|null  $data     Данные для загрузки.
+     * @param string|null $formName Название формы.
      *
-     * @throws InvalidArgumentException Если http-код ответа не верный.
-     * @throws InvalidConfigException   Если компонент не зарегистрирован.
+     * @return boolean
      *
      * @inherit
      *
-     * @return mixed
+     * @throws InvalidConfigException Если компонент не зарегистрирован.
      */
-    public function run(array $params = [])
+    public function load($data, $formName = null): bool
     {
-        $item = $this->dto;
+        $hydrator  = $this->getHydrator();
+        $prototype = $this->getPrototype();
+        $prototype = $hydrator->hydrate($data, $prototype);
 
-        $result = $this->getDtoComponent()->createOne($item)->doOperation();
-        $item   = $this->getResultItem($result);
-        if (false === $item) {
-            Yii::$app->response->setStatusCode(500);
-            return false;
-        }
-
-        if (! $result->isSuccess()) {
-            $this->addErrors($item->getErrors());
-            return false;
-        }
-
-        return $item;
+        $this->setPrototype($prototype);
+        return true;
     }
-
-    /**
-     * Возвращает первый элемент из списка созданных.
-     *
-     * @param mixed $result Результат выполнения операции.
-     *
-     * @return mixed|false
-     */
-    abstract protected function getResultItem($result);
 }

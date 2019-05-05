@@ -4,11 +4,9 @@ declare(strict_types = 1);
 
 namespace app\forms\logbook;
 
-use app\entities\LogbookActiveRecord;
 use app\forms\abstracts\AbstractCreateForm;
 use app\traits\logbook\LogbookComponentTrait;
 use app\interfaces\logbook\dto\LogbookInterface;
-use app\validators\logbook\LogbookValidator;
 use yii\base\InvalidConfigException;
 
 /**
@@ -19,38 +17,44 @@ class CreateForm extends AbstractCreateForm
     use LogbookComponentTrait;
 
     /**
-     * Возвращает первый элемент из списка созданных.
+     * Метод возвращает объект ДТО для работы с формой.
      *
-     * @param mixed $result Результат выполнения операции.
+     * @throws InvalidConfigException Генерирует если прототип формы не задан.
      *
      * @return LogbookInterface
      */
-    public function getResultItem($result): LogbookInterface
+    public function getPrototype(): LogbookInterface
     {
-        return $result->getLogbook();
+        if (! $this->prototype instanceof LogbookInterface) {
+            throw new InvalidConfigException(' Property "$this->prototype" must implement interface CategoryInterface::class');
+        }
+        return $this->prototype;
     }
 
     /**
-     * Инициализация объекта формы обновления.
+     * Осуществлет основное действие формы - добавление элемента.
+     *
+     * @param array $params Параметры формы для выполнения её действия.
      *
      * @throws InvalidConfigException Если компонент не зарегистрирован.
      *
-     * @return void
-     */
-    public function init(): void
-    {
-        parent::init();
-        $this->setLogbookComponent($this->getLogbookComponent());
-        $this->setActiveRecordClass(LogbookActiveRecord::class);
-    }
-
-    /**
-     * Данный метод возвращает массив, содержащий правила валидации атрибутов.
+     * @inherit
      *
-     * @return array
+     * @return LogbookInterface|null
      */
-    public function rules(): array
+    public function run(array $params = []): ?LogbookInterface
     {
-        return LogbookValidator::getRules();
+        if (! $this->validate()) {
+            return null;
+        }
+
+        $result = $this->getLogbookComponent()->createOne($this->getPrototype())->doOperation();
+        $item   = $result->getLogbook();
+        if (! $result->isSuccess() && null !== $item) {
+            $this->addErrors($item->getErrors());
+            return null;
+        }
+
+        return $item;
     }
 }

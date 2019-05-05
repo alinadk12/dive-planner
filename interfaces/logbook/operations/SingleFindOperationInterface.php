@@ -192,13 +192,4 @@ interface SingleFindOperationInterface extends BaseFindOperationInterface
      * @return SingleFindOperationInterface
      */
     public function sortById(string $sortType = 'ASC'): SingleFindOperationInterface;
-
-    /**
-     * Устанавливает сортировку результатов запроса по полю "name".
-     *
-     * @param string $sortType Тип сортировки - ASC или DESC.
-     *
-     * @return SingleFindOperationInterface
-     */
-    public function sortByName(string $sortType = 'ASC'): SingleFindOperationInterface;
 }

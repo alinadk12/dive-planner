@@ -49,6 +49,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byId(int $id, string $operator = '='): SingleFindOperationInterface
     {
@@ -63,6 +65,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byUserId(int $userId, string $operator = '='): SingleFindOperationInterface
     {
@@ -77,6 +81,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byDate(string $date, string $operator = '='): SingleFindOperationInterface
     {
@@ -91,6 +97,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byLocation(string $location, string $operator = '='): SingleFindOperationInterface
     {
@@ -105,6 +113,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byDepth(int $depth, string $operator = '='): SingleFindOperationInterface
     {
@@ -119,6 +129,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator   Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byVisibility(int $visibility, string $operator = '='): SingleFindOperationInterface
     {
@@ -133,6 +145,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempAir(int $tempAir, string $operator = '='): SingleFindOperationInterface
     {
@@ -147,6 +161,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator    Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempSurface(int $tempSurface, string $operator = '='): SingleFindOperationInterface
     {
@@ -161,6 +177,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator   Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTempBottom(int $tempBottom, string $operator = '='): SingleFindOperationInterface
     {
@@ -175,6 +193,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTimeIn(string $timeIn, string $operator = '='): SingleFindOperationInterface
     {
@@ -189,6 +209,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byTimeOut(string $timeOut, string $operator = '='): SingleFindOperationInterface
     {
@@ -203,6 +225,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byCylinder(int $cylinder, string $operator = '='): SingleFindOperationInterface
     {
@@ -217,6 +241,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byStartBar(int $startBar, string $operator = '='): SingleFindOperationInterface
     {
@@ -231,6 +257,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byEndBar(int $endBar, string $operator = '='): SingleFindOperationInterface
     {
@@ -245,6 +273,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $operator Оператор сравнения при поиске.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function byComment(string $comment, string $operator = '='): SingleFindOperationInterface
     {
@@ -286,6 +316,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $sortType Тип сортировки - ASC или DESC.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function sortById(string $sortType = 'ASC'): SingleFindOperationInterface
     {
@@ -299,6 +331,8 @@ class SingleFindOperation extends BaseFindOperation implements SingleFindOperati
      * @param string $sortType Тип сортировки - ASC или DESC.
      *
      * @return SingleFindOperationInterface
+     *
+     * @throws InvalidConfigException Исключение генерируется в случае неверной инициализации команды.
      */
     public function sortByName(string $sortType = 'ASC'): SingleFindOperationInterface
     {

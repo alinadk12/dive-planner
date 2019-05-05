@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace app\entities;
 
-use yii;
 use yii\db\ActiveRecord;
 use app\validators\logbook\LogbookValidator;
 

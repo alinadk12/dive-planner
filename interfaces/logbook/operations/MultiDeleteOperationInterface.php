@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace app\interfaces\logbook\operations;
 
-use app\interfaces\abstracts\QueryCacheInterface;
 use app\interfaces\logbook\dto\OperationResultInterface;
 
 /**

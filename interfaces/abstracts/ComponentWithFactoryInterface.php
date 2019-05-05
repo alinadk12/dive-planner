@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace app\interfaces\abstracts;
 
 use app\models\ModelsFactory;

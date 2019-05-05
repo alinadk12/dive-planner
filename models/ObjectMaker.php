@@ -6,6 +6,7 @@ namespace app\models;
 
 use yii;
 use app\interfaces\abstracts\ObjectMakerInterface;
+use yii\base\InvalidConfigException;
 
 /**
  * Класс для создания объектов при помощи их конфига через Yii::createObject(...).
@@ -56,6 +57,8 @@ class ObjectMaker implements ObjectMakerInterface
      * Метод выполняет создание объекта в соответствии с выставленной конфигурацией.
      *
      * @return mixed
+     *
+     * @throws InvalidConfigException Исключение генерируется если объект сконфигурирован неверно.
      */
     public function create()
     {

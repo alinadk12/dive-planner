@@ -12,7 +12,6 @@ use yii\base\Component;
 use yii\base\InvalidConfigException;
 use yii\db\Command;
 use yii\db\Exception;
-use function is_int;
 
 /**
  * Операция удаления экземпляра сущности "Логбук".
@@ -45,8 +44,8 @@ class MultiDeleteOperation extends Component implements MultiDeleteOperationInte
      */
     public function doOperation(): OperationResultInterface
     {
-        $result          = $this->getResultPrototype();
-        $deleteCommand   = $this->createDeleteQuery($this->getFilter());
+        $result        = $this->getResultPrototype();
+        $deleteCommand = $this->createDeleteQuery($this->getFilter());
         $deleteCommand->queryAll();
 
         return $result;

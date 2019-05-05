@@ -4,23 +4,20 @@ declare(strict_types = 1);
 
 namespace app\forms\abstracts;
 
+use app\interfaces\abstracts\forms\ViewFormInterface;
+
 /**
  * Абстрактной класс формы для просмотра данных одной DTO в админке.
  */
-abstract class AbstractViewForm extends AbstractForm
+abstract class AbstractViewForm extends AbstractQueryParamsForm implements ViewFormInterface
 {
     /**
-     * Ничего не делает - при просмотре ничего делать и не надо.
-     * Переопределяется по требованию родителя.
+     * Метод возвращает объект ДТО для работы с формой.
      *
-     * @param array $params Параметры формы для выполнения её действия.
-     *
-     * @inherit
-     *
-     * @return mixed
+     * @return null
      */
-    public function run(array $params = [])
+    public function getPrototype()
     {
-        return true;
+        return null;
     }
 }
