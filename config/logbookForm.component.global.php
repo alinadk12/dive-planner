@@ -17,39 +17,39 @@ use app\interfaces\abstracts\ComponentWithFactoryInterface;
 use app\validators\logbook\LogbookFilterValidator;
 
 return [
-    'class'                                           => LogbookFormComponent::class,
-    ComponentWithFactoryInterface::FACTORY_CONFIG_KEY => [
-        'class'                                   => LogbookFormFactory::class,
-        LogbookFormFactory::MODEL_CONFIG_LIST_KEY => [
-            LogbookFormFactory::LOGBOOK_CREATE_FORM => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => CreateForm::class,
+    'class'              => LogbookFormComponent::class,
+    'modelFactoryConfig' => [
+        'class'           => LogbookFormFactory::class,
+        'modelConfigList' => [
+            'logbookCreateForm'      => [
+                'type' => CreateForm::class,
             ],
-            LogbookFormFactory::LOGBOOK_UPDATE_FORM => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => UpdateForm::class,
+            'logbookUpdateForm'      => [
+                'type' => UpdateForm::class,
             ],
-            LogbookFormFactory::LOGBOOK_DELETE_FORM => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => DeleteForm::class,
+            'logbookDeleteForm'      => [
+                'type' => DeleteForm::class,
             ],
-            LogbookFormFactory::LOGBOOK_LIST_FORM   => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => ListForm::class,
+            'logbookListForm'        => [
+                'type' => ListForm::class,
             ],
-            LogbookFormFactory::LOGBOOK_VIEW_FORM   => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => ViewForm::class,
+            'logbookViewForm'        => [
+                'type' => ViewForm::class,
             ],
-            LogbookFormFactory::LOGBOOK_FILTER           => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => MultiFilter::class,
+            'logbookFilter'          => [
+                'type' => MultiFilter::class,
             ],
-            LogbookFormFactory::LOGBOOK_FILTER_VALIDATOR => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => LogbookFilterValidator::class,
+            'logbookFilterValidator' => [
+                'type' => LogbookFilterValidator::class,
             ],
-            LogbookFormFactory::LOGBOOK_FILTER_HYDRATOR  => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => FilterHydrator::class,
+            'logbookFilterHydrator'  => [
+                'type' => FilterHydrator::class,
             ],
-            LogbookFormFactory::LOGBOOK_HYDRATOR         => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => Hydrator::class,
+            'logbookHydrator'        => [
+                'type' => Hydrator::class,
             ],
-            LogbookFormFactory::LOGBOOK_PROTOTYPE        => [
-                LogbookFormFactory::OBJECT_TYPE_KEY => Logbook::class,
+            'logbookPrototype'       => [
+                'type' => Logbook::class,
             ],
         ],
     ],

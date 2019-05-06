@@ -6,7 +6,6 @@ use app\dataTransferObjects\logbook\OperationResult;
 use app\dataTransferObjects\logbook\Logbook;
 use app\factories\LogbookFactory;
 use app\hydrators\logbook\LogbookDatabaseHydrator;
-use app\interfaces\abstracts\ComponentWithFactoryInterface;
 use app\operations\logbook\MultiDeleteOperation;
 use app\operations\logbook\MultiFindOperation;
 use app\operations\logbook\SingleCreateOperation;
@@ -16,42 +15,42 @@ use app\queries\LogbookQuery;
 use app\validators\logbook\LogbookValidator;
 
 return [
-    'class'                                           => LogbookComponent::class,
-    ComponentWithFactoryInterface::FACTORY_CONFIG_KEY => [
-        'class'                               => LogbookFactory::class,
-        LogbookFactory::MODEL_CONFIG_LIST_KEY => [
-            LogbookFactory::LOGBOOK_OPERATION_RESULT_PROTOTYPE      => [
-                LogbookFactory::OBJECT_TYPE_KEY => OperationResult::class,
+    'class'              => LogbookComponent::class,
+    'modelFactoryConfig' => [
+        'class'           => LogbookFactory::class,
+        'modelConfigList' => [
+            'logbookOperationResultPrototype'     => [
+                'type' => OperationResult::class,
             ],
-            LogbookFactory::LOGBOOK_LIST_OPERATION_RESULT_PROTOTYPE => [
-                LogbookFactory::OBJECT_TYPE_KEY => OperationListResult::class,
+            'logbookListOperationResultPrototype' => [
+                'type' => OperationListResult::class,
             ],
-            LogbookFactory::LOGBOOK_SINGLE_CREATE_OPERATION         => [
-                LogbookFactory::OBJECT_TYPE_KEY => SingleCreateOperation::class,
+            'logbookSingleCreateOperation'        => [
+                'type' => SingleCreateOperation::class,
             ],
-            LogbookFactory::LOGBOOK_SINGLE_UPDATE_OPERATION         => [
-                LogbookFactory::OBJECT_TYPE_KEY => SingleUpdateOperation::class,
+            'logbookSingleUpdateOperation'        => [
+                'type' => SingleUpdateOperation::class,
             ],
-            LogbookFactory::LOGBOOK_MULTI_DELETE_OPERATION          => [
-                LogbookFactory::OBJECT_TYPE_KEY => MultiDeleteOperation::class,
+            'logbookMultiDeleteOperation'         => [
+                'type' => MultiDeleteOperation::class,
             ],
-            LogbookFactory::LOGBOOK_MULTI_FIND_OPERATION            => [
-                LogbookFactory::OBJECT_TYPE_KEY => MultiFindOperation::class,
+            'logbookMultiFindOperation'           => [
+                'type' => MultiFindOperation::class,
             ],
-            LogbookFactory::LOGBOOK_SINGLE_FIND_OPERATION           => [
-                LogbookFactory::OBJECT_TYPE_KEY => SingleFindOperation::class,
+            'logbookSingleFindOperation'          => [
+                'type' => SingleFindOperation::class,
             ],
-            LogbookFactory::LOGBOOK_QUERY                           => [
-                LogbookFactory::OBJECT_TYPE_KEY => LogbookQuery::class,
+            'logbookQuery'                        => [
+                'type' => LogbookQuery::class,
             ],
-            LogbookFactory::LOGBOOK_DATABASE_HYDRATOR               => [
-                LogbookFactory::OBJECT_TYPE_KEY => LogbookDatabaseHydrator::class,
+            'logbookDatabaseHydrator'             => [
+                'type' => LogbookDatabaseHydrator::class,
             ],
-            LogbookFactory::LOGBOOK_PROTOTYPE                       => [
-                LogbookFactory::OBJECT_TYPE_KEY => Logbook::class,
+            'logbookPrototype'                    => [
+                'type' => Logbook::class,
             ],
-            LogbookFactory::LOGBOOK_VALIDATOR                       => [
-                LogbookFactory::OBJECT_TYPE_KEY => LogbookValidator::class,
+            'logbookValidator'                    => [
+                'type' => LogbookValidator::class,
             ],
         ],
     ],
