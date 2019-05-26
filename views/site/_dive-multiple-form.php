@@ -10,8 +10,8 @@ use yii\helpers\Html;
 <div>
 
     <?php $form = ActiveForm::begin([
-        'id' => 'dive-multilevel-form',
-        'validateOnBlur' => false,
+        'id'               => 'dive-multilevel-form',
+        'validateOnBlur'   => false,
         'validateOnChange' => false,
     ]); ?>
 
@@ -68,7 +68,7 @@ use yii\helpers\Html;
     </div>
 
     <center>
-        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#dive-multilevel-3">+</button>
+        <button type="button" class="btn" data-toggle="collapse" data-target="#dive-multilevel-3">+</button>
     </center>
 
     <br>
@@ -107,7 +107,7 @@ use yii\helpers\Html;
         </div>
 
         <center>
-            <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#dive-multilevel-4">+</button>
+            <button type="button" class="btn" data-toggle="collapse" data-target="#dive-multilevel-4">+</button>
         </center>
 
         <br>
@@ -160,6 +160,29 @@ use yii\helpers\Html;
             ]) ?>
         </center>
     </div>
+
+    <?= $this->render('_dive-profile-chart/index', [
+        'data' => [
+            [
+                'pg'       => [
+                    'A',
+                    'E',
+                ],
+                'time'     => 20,
+                'depth'    => 30,
+                'interval' => 0,
+            ],
+            [
+                'pg'       => [
+                    'K',
+                    'Z',
+                ],
+                'time'     => 40,
+                'depth'    => 55,
+                'interval' => 130,
+            ],
+        ],
+    ]); ?>
 
     <?php ActiveForm::end(); ?>
 

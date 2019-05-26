@@ -41,7 +41,7 @@ use yii\helpers\Html;
     </div>
 
     <center>
-        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#air-2">+</button>
+        <button type="button" class="btn" data-toggle="collapse" data-target="#air-2">+</button>
     </center>
 
     <br>
@@ -62,7 +62,7 @@ use yii\helpers\Html;
         </div>
 
         <center>
-            <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#air-3">+</button>
+            <button type="button" class="btn" data-toggle="collapse" data-target="#air-3">+</button>
         </center>
 
         <br>
@@ -83,7 +83,7 @@ use yii\helpers\Html;
             </div>
 
             <center>
-                <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#air-4">+</button>
+                <button type="button" class="btn" data-toggle="collapse" data-target="#air-4">+</button>
             </center>
 
             <br>

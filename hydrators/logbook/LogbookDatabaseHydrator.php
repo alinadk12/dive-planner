@@ -58,7 +58,7 @@ class LogbookDatabaseHydrator implements HydratorInterface
         $object->setTempAir((int)$data['tempAir']);
         $object->setTempSurface((int)$data['tempSurface']);
         $object->setTempBottom((int)$data['tempBottom']);
-        $object->setTimeIn((string)$data['timeIn']);
+        $object->setTimeIn(substr((string)$data['timeIn'], 0,5));
         $object->setTimeOut((string)$data['timeOut']);
         $object->setCylinder((int)$data['cylinder']);
         $object->setStartBar((int)$data['startBar']);

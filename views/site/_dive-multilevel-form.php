@@ -60,7 +60,7 @@ use yii\helpers\Html;
     </div>
 
     <center>
-        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#dive-multiple-3">+</button>
+        <button type="button" class="btn" data-toggle="collapse" data-target="#dive-multiple-3">+</button>
     </center>
 
     <br>
@@ -89,7 +89,7 @@ use yii\helpers\Html;
         </div>
 
         <center>
-            <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#dive-multiple-4">+</button>
+            <button type="button" class="btn" data-toggle="collapse" data-target="#dive-multiple-4">+</button>
         </center>
 
         <br>
@@ -132,6 +132,38 @@ use yii\helpers\Html;
             ]) ?>
         </center>
     </div>
+
+    <?= $this->render('_dive-profile-chart/index', [
+        'data' => [
+            [
+                'pg'       => [
+                    'A',
+                    'E',
+                ],
+                'time'     => 20,
+                'depth'    => 30,
+                'interval' => 0,
+            ],
+            [
+                'pg'       => [
+                    'E',
+                    'O',
+                ],
+                'time'     => 30,
+                'depth'    => 40,
+                'interval' => 0,
+            ],
+            [
+                'pg'       => [
+                    'O',
+                    'Z',
+                ],
+                'time'     => 55,
+                'depth'    => 100,
+                'interval' => 0,
+            ],
+        ],
+    ]); ?>
 
     <?php ActiveForm::end(); ?>
 
