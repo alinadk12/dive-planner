@@ -4,11 +4,12 @@ declare(strict_types = 1);
 
 namespace app\interfaces\logbook;
 
-use app\forms\logbook\CreateForm;
-use app\forms\logbook\DeleteForm;
-use app\forms\logbook\FindForm;
-use app\forms\logbook\UpdateForm;
-use app\forms\logbook\ViewForm;
+use app\interfaces\abstracts\forms\CreateFormInterface;
+use app\interfaces\abstracts\forms\DeleteFormInterface;
+use app\interfaces\abstracts\forms\ListFormInterface;
+use app\interfaces\abstracts\forms\UpdateFormInterface;
+use app\interfaces\abstracts\forms\ViewFormInterface;
+use app\interfaces\abstracts\HydratorInterface;
 
 /**
  * Интерфейс компонента для работы с формами сущностей "Логбук".
@@ -16,37 +17,44 @@ use app\forms\logbook\ViewForm;
 interface  FormComponentInterface
 {
     /**
-     * Метод возвращает форму создания экземпляров сущности "Логбук".
+     * Метод возвращает интерфейс формы создания сущности "Логбук".
      *
-     * @return CreateForm
+     * @return CreateFormInterface
      */
-    public function create(): CreateForm;
+    public function getCreateForm(): CreateFormInterface;
 
     /**
-     * Метод возвращает форму удаления экземпляра сущности "Логбук".
+     * Метод возвращает интерфейс формы удаления сущности "Логбук".
      *
-     * @return DeleteForm
+     * @return DeleteFormInterface
      */
-    public function delete(): DeleteForm;
+    public function getDeleteForm(): DeleteFormInterface;
 
     /**
-     * Метод возвращает форму поиска экземпляров сущности "Логбук".
+     * Метод возвращает интерефейс гидратора фильтра поиска сущности "Логбук".
      *
-     * @return FindForm
+     * @return HydratorInterface
      */
-    public function find(): FindForm;
+    public function getFilterHydrator(): HydratorInterface;
 
     /**
-     * Метод возвращает форму обновления экземпляра сущности "Логбук".
+     * Метод возвращает интерефейс операции поиска списка сущностей "Логбук".
      *
-     * @return UpdateForm
+     * @return ListFormInterface
      */
-    public function update(): UpdateForm;
+    public function getListForm(): ListFormInterface;
 
     /**
-     * Метод возвращает прототип админской модели "Логбук".
+     * Метод возвращает интерфейс формы редактирования сущности "Логбук".
      *
-     * @return ViewForm
+     * @return UpdateFormInterface
      */
-    public function view(): ViewForm;
+    public function getUpdateForm(): UpdateFormInterface;
+
+    /**
+     * Метод возвращает интерефейс операции поиска одного экземпляра сущности "Логбук".
+     *
+     * @return ViewFormInterface
+     */
+    public function getViewForm(): ViewFormInterface;
 }

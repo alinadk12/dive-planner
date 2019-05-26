@@ -4,12 +4,13 @@ declare(strict_types = 1);
 
 namespace app\components\logbook;
 
-use app\forms\logbook\CreateForm;
-use app\forms\logbook\DeleteForm;
-use app\forms\logbook\FindForm;
-use app\forms\logbook\UpdateForm;
-use app\forms\logbook\ViewForm;
 use app\interfaces\abstracts\ComponentWithFactoryInterface;
+use app\interfaces\abstracts\forms\CreateFormInterface;
+use app\interfaces\abstracts\forms\DeleteFormInterface;
+use app\interfaces\abstracts\forms\ListFormInterface;
+use app\interfaces\abstracts\forms\UpdateFormInterface;
+use app\interfaces\abstracts\forms\ViewFormInterface;
+use app\interfaces\abstracts\HydratorInterface;
 use app\interfaces\logbook\FormFactoryInterface;
 use app\traits\ModelsFactoryTrait;
 use app\interfaces\logbook\FormComponentInterface;
@@ -42,61 +43,73 @@ class LogbookFormComponent extends Component implements ComponentWithFactoryInte
     }
 
     /**
-     * Метод возвращает форму создания экземпляров сущности "Логбук".
+     * Метод возвращает форму создания сущности "Логбук".
      *
      * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
      *
-     * @return CreateForm
+     * @return CreateFormInterface
      */
-    public function create(): CreateForm
+    public function getCreateForm(): CreateFormInterface
     {
         return $this->getModelFactory()->getCreateForm();
     }
 
     /**
-     * Метод возвращает форму удаления экземпляра сущности "Логбук".
+     * Метод возвращает форму удаления сущности "Логбук".
      *
      * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
      *
-     * @return DeleteForm
+     * @return DeleteFormInterface
      */
-    public function delete(): DeleteForm
+    public function getDeleteForm(): DeleteFormInterface
     {
         return $this->getModelFactory()->getDeleteForm();
     }
 
     /**
-     * Метод возвращает форму поиска экземпляров сущности "Логбук".
+     * Метод возвращает гидратор фильтра поиска сущности "Логбук".
      *
      * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
      *
-     * @return FindForm
+     * @return HydratorInterface
      */
-    public function find(): FindForm
+    public function getFilterHydrator(): HydratorInterface
     {
-        return $this->getModelFactory()->getFindForm();
+        return $this->getModelFactory()->getLogbookFilterHydrator();
     }
 
     /**
-     * Метод возвращает форму обновления экземпляра сущности "Логбук".
+     * Метод возвращает форму поиска списка сущностей "Логбук".
      *
      * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
      *
-     * @return UpdateForm
+     * @return ListFormInterface
      */
-    public function update(): UpdateForm
+    public function getListForm(): ListFormInterface
+    {
+        return $this->getModelFactory()->getListForm();
+    }
+
+    /**
+     * Метод возвращает форму редатирования сущности "Логбук".
+     *
+     * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
+     *
+     * @return UpdateFormInterface
+     */
+    public function getUpdateForm(): UpdateFormInterface
     {
         return $this->getModelFactory()->getUpdateForm();
     }
 
     /**
-     * Метод возвращает прототип админской модели "Логбук".
+     * Метод возвращает форму просмотра одной сущности "Логбук".
      *
      * @throws InvalidConfigException Генерируется если фабрика не имплементирует нужный интерфейс.
      *
-     * @return ViewForm
+     * @return ViewFormInterface
      */
-    public function view(): ViewForm
+    public function getViewForm(): ViewFormInterface
     {
         return $this->getModelFactory()->getViewForm();
     }

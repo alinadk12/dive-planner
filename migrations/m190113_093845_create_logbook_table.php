@@ -14,7 +14,7 @@ class m190113_093845_create_logbook_table extends Migration
     {
         $this->createTable('logbook', [
             'id'          => $this->primaryKey(),
-            'userId'      => $this->integer()->notNull()->comment('ИД дайвера'),
+            'userId'      => $this->integer()->notNull()->comment('Идентификатор пользователя'),
             'date'        => $this->date()->notNull()->comment('Дата погружения'),
             'location'    => $this->string(255)->notNull()->comment('Место погружения'),
             'depth'       => $this->integer()->notNull()->comment('Глубина'),

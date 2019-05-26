@@ -38,9 +38,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Профиль погружений', 'url' => ['/site/index']],
+            ['label' => 'Журнал погружений', 'url' => ['/logbook']],
+            ['label' => 'Правила погружения', 'url' => ['/site/rules']],
+            ['label' => 'Справка', 'url' => ['/site/help']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

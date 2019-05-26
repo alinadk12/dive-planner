@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace app\interfaces\logbook\operations;
 
 use app\interfaces\logbook\dto\OperationListResultInterface;
+use app\interfaces\logbook\filters\MultiFilterOperationInterface;
 
-interface MultiFindOperationInterface extends BaseFindOperationInterface
+interface MultiFindOperationInterface extends BaseFindOperationInterface, MultiFilterOperationInterface
 {
     /**
      * Метод устанавливает объект прототипа "Логбук" ответа команды.

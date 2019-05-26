@@ -295,7 +295,7 @@ class LogbookQuery extends Query implements QueryInterface
     public function init()
     {
         parent::init();
-        $this->from(LogbookActiveRecord::tableName() . 'AS logbook');
+        $this->from(LogbookActiveRecord::tableName() . ' AS logbook');
         $this->select('logbook.*');
     }
 

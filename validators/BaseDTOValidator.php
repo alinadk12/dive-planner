@@ -7,7 +7,6 @@ namespace app\validators;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
 use app\interfaces\abstracts\DTOValidatorInterface;
-use yii\base\Object;
 
 /**
  * Базовый валидатор ДТО объекта.

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace app\forms\logbook;
 
+use app\entities\LogbookActiveRecord;
 use app\forms\abstracts\AbstractViewForm;
 use app\interfaces\logbook\dto\LogbookInterface;
 use app\traits\logbook\LogbookComponentTrait;
@@ -34,12 +35,25 @@ class ViewForm extends AbstractViewForm
         if (! $this->validate()) {
             return null;
         }
-
         $item = $this->getLogbookComponent()->findOne()->byId($this->getId())->doOperation()->getLogbook();
         if (! $item) {
             throw new Exception('Сущность не найдена', 404);
         }
 
         return $item;
+    }
+
+    /**
+     * Инициализация объекта формы обновления.
+     *
+     * @throws InvalidConfigException Если компонент не зарегистрирован.
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        parent::init();
+        $this->setDtoComponent($this->getLogbookComponent());
+        $this->setActiveRecordClass(LogbookActiveRecord::class);
     }
 }

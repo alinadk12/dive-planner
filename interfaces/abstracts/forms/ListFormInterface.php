@@ -36,4 +36,11 @@ interface ListFormInterface extends AbstractFormInterface
      * @return boolean
      */
     public function getMore(): bool;
+
+    /**
+     * Метод возвращает объект фильтра для формы выборки.
+     *
+     * @return mixed
+     */
+    public function getFilter();
 }

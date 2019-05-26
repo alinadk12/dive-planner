@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace app\interfaces\logbook\filters;
 
+use app\interfaces\abstracts\AbstractFilterInterface;
+
 /**
  * Интерфейс объявляет методы фильтра данных.
  */
-interface BaseFilterInterface
+interface BaseFilterInterface extends AbstractFilterInterface
 {
     /**
      * Метод возвращает атрибут "Идентификатор пользователя" сущности "Логбук".

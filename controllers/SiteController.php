@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\AirForm;
+use app\models\DiveMultiLevelForm;
+use app\models\DiveMultipleForm;
+use app\models\IntervalForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,6 +14,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+/**
+ * Контроллер для работы с сущностью "Логбук".
+ */
 class SiteController extends Controller
 {
     /**
@@ -59,9 +66,22 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($tab = 'dive-multiple')
     {
-        return $this->render('index');
+        $diveMultipleModel = new DiveMultipleForm();
+        $diveMultiLevelModel = new DiveMultiLevelForm();
+        $intervalModel = new IntervalForm();
+        $airModel = new AirForm();
+
+//        var_dump(Yii::$app->request->post()['DiveMultipleForm']['dive']);die;
+
+        return $this->render('index', [
+            'diveMultipleModel' => $diveMultipleModel ,
+            'diveMultiLevelModel' => $diveMultiLevelModel ,
+            'intervalModel' => $intervalModel,
+            'airModel' => $airModel,
+            'tab' => $tab,
+        ]);
     }
 
     /**
@@ -117,12 +137,22 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Displays help page.
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionHelp()
     {
-        return $this->render('about');
+        return $this->render('help');
+    }
+
+    /**
+     * Displays rules page.
+     *
+     * @return string
+     */
+    public function actionRules()
+    {
+        return $this->render('rules');
     }
 }

@@ -89,7 +89,7 @@ class LogbookFactory extends ModelsFactory implements FactoryInterface
      */
     public function getLogbookSingleFindOperation(): SingleFindOperationInterface
     {
-        return $this->getModelInstance(self::LOGBOOK_SINGLE_CREATE_OPERATION, [], false)
+        return $this->getModelInstance(self::LOGBOOK_SINGLE_FIND_OPERATION, [], false)
                     ->setResultPrototype($this->getLogbookOperationResultPrototype())
                     ->setQuery($this->getLogbookQuery())
                     ->setLogbookPrototype($this->getLogbookPrototype())

@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace app\controllers;
 
-use yii\helpers\ArrayHelper;
-use yii\helpers\FileHelper;
+use yii\web\Controller;
 
-class AbstractController
+/**
+ * Абстрактный контроллер.
+ */
+class AbstractController extends Controller
 {
 
 }

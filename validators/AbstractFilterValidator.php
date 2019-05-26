@@ -17,17 +17,7 @@ class AbstractFilterValidator extends BaseDTOValidator
      *
      * @var array
      */
-    protected static $ruleList = [
-        [
-            [
-                'limit',
-                'offset',
-            ],
-            'integer',
-            'max' => 2147483647,
-            'min' => 0,
-        ],
-    ];
+    protected static $ruleList = [];
 
     /**
      * Данный метод возвращает массив, содержащий правила валидации атрибутов.

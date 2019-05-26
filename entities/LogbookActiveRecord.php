@@ -71,4 +71,40 @@ class LogbookActiveRecord extends ActiveRecord
     {
         return LogbookValidator::getRules();
     }
+
+    /**
+     * Возвращает подписи для атрибутов модели.
+     *
+     * @return array
+     */
+    public function attributeLabels(): array
+    {
+        return static::labels();
+    }
+
+    /**
+     * Метод возвращает подписи для атрибутов модели.
+     *
+     * @return array
+     */
+    public static function labels(): array
+    {
+        return [
+            'id'          => 'Идентификатор',
+            'userId'      => 'Идентификатор пользователя',
+            'date'        => 'Дата погружения',
+            'location'    => 'Место погружения',
+            'depth'       => 'Глубина',
+            'visibility'  => 'Видимость',
+            'tempAir'     => 'Температура воздуха',
+            'tempSurface' => 'Температура воды на поверхности',
+            'tempBottom'  => 'Температура воды на дне',
+            'timeIn'      => 'Время начала погружения',
+            'timeOut'     => 'Время окончания погружения',
+            'cylinder'    => 'Объем баллона',
+            'startBar'    => 'Количество воздуха в начале погружения',
+            'endBar'      => 'Количество воздуха в конце погружения',
+            'comment'     => 'Комментарии',
+        ];
+    }
 }

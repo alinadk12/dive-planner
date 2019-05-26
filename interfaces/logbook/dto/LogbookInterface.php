@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace app\interfaces\logbook\dto;
 
+use app\interfaces\abstracts\DataTransferObjectInterface;
 use app\interfaces\abstracts\ObjectWithErrorsInterface;
 use app\interfaces\abstracts\PrototypeInterface;
 use app\interfaces\errors\WithErrorsInterface;
@@ -11,7 +12,7 @@ use app\interfaces\errors\WithErrorsInterface;
 /**
  * Интерфейс для объекта DTO сущности "Логбук".
  */
-interface LogbookInterface extends ObjectWithErrorsInterface, PrototypeInterface, WithErrorsInterface
+interface LogbookInterface extends ObjectWithErrorsInterface, PrototypeInterface, WithErrorsInterface, DataTransferObjectInterface
 {
     /**
      * Метод завершает инициализацию ДТО.

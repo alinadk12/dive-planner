@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace app\forms\logbook;
 
+use app\entities\LogbookActiveRecord;
 use app\forms\abstracts\AbstractCreateForm;
 use app\traits\logbook\LogbookComponentTrait;
 use app\interfaces\logbook\dto\LogbookInterface;
@@ -15,6 +16,20 @@ use yii\base\InvalidConfigException;
 class CreateForm extends AbstractCreateForm
 {
     use LogbookComponentTrait;
+
+    /**
+     * Инициализация объекта формы обновления.
+     *
+     * @throws InvalidConfigException Если компонент не зарегистрирован.
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        parent::init();
+        $this->setDtoComponent($this->getLogbookComponent());
+        $this->setActiveRecordClass(LogbookActiveRecord::class);
+    }
 
     /**
      * Метод возвращает объект ДТО для работы с формой.

@@ -21,17 +21,17 @@ class LogbookFilterValidator extends AbstractFilterValidator
      * @var array
      */
     protected static $ruleList = [
-        [
-            ['id'],
-            'integer',
-            'min'         => 1,
-            'max'         => 2147483647,
-        ],
-        [
-            ['name'],
-            'string',
-            'max' => 255,
-        ],
+//        [
+//            ['id'],
+//            'integer',
+//            'min'         => 1,
+//            'max'         => 2147483647,
+//        ],
+//        [
+//            ['name'],
+//            'string',
+//            'max' => 255,
+//        ],
     ];
 
     /**

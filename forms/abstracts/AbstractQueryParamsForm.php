@@ -56,7 +56,7 @@ abstract class AbstractQueryParamsForm extends AbstractForm
      *
      * @return array
      */
-    public function scenarios()
+    public function scenarios(): array
     {
         return [
             self::SCENARIO_DEFAULT => ['id'],

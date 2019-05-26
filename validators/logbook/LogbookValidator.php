@@ -11,7 +11,7 @@ use app\validators\BaseDTOValidator;
  * Валидатор атрибутов DTO сущности "Логбук".
  *
  * @property int    $id   Идентификатор.
- * @property string $name Название секции.
+ * @property string $location Место погружения.
  */
 class LogbookValidator extends BaseDTOValidator
 {
@@ -28,15 +28,50 @@ class LogbookValidator extends BaseDTOValidator
             'max'         => 2147483647,
             'skipOnEmpty' => 1,
         ],
-        [
-            ['name'],
-            'string',
-            'max' => 255,
-        ],
-        [
-            ['name'],
-            'required',
-        ],
+//[
+//    ['location'],
+//    'string',
+//    'max' => 255,
+//],
+//[
+//    [
+//        'date',
+//        'location',
+//        'depth',
+//        'cylinder',
+//        'startBar',
+//        'endBar',
+//    ],
+//    'required',
+//],
+//[
+//    [
+//        'depth',
+//        'visibility',
+//        'tempAir',
+//        'tempSurface',
+//        'tempBottom',
+//        'cylinder',
+//        'startBar',
+//        'endBar',
+//    ],
+//    'integer',
+//    'min' => - 2147483648,
+//    'max' => 2147483647,
+//],
+//[
+//    ['date'],
+//    'datetime',
+//    'format' => 'php:d.m.Y',
+//],
+//[
+//    [
+//        'timeIn',
+//        'timeOut',
+//    ],
+//    'datetime',
+//    'format' => 'php:H:i',
+//],
     ];
 
     /**
